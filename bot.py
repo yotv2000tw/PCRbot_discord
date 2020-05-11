@@ -1,7 +1,7 @@
 import discord
-import client
 import json
 import os
+import keep_alive
 from discord.ext import commands
 
 with open('setting.json',mode='r',encoding='utf8') as jFile:
@@ -9,9 +9,14 @@ with open('setting.json',mode='r',encoding='utf8') as jFile:
 
 bot = commands.Bot(command_prefix='[')
 
+
+
 @bot.event
 async def on_ready():
+    act = discord.Game('with 雪楓')
+    await bot.change_presence(status=discord.Status.dnd, activity=act)
     print("bot is online.")
+    
 
 @bot.event
 async def on_member_join(member):
@@ -41,4 +46,5 @@ for Filename in os.listdir('./cmds'):
         bot.load_extension(f"cmds.{Filename[:-3]}")
 
 if __name__ == "__main__":
+    keep_alive.keep_alive()
     bot.run(jdata['TOKEN'])

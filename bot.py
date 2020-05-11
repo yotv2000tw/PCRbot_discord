@@ -1,4 +1,5 @@
 import discord
+import client
 from discord.ext import commands
 
 bot = commands.Bot(command_prefix='[')
@@ -19,4 +20,4 @@ async def on_member_remove(member):
 async def ping(ctx):
     await ctx.send(F"{round(bot.latency*1000)}ms")
 
-bot.run("NjM0NDMzMTU0NjQzNjU2NzA0.XrjkWQ.xkfabGnJSfNMF5pIogVKnM0zr4U")
+bot.run(client.key)
